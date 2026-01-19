@@ -1,34 +1,32 @@
 <!DOCTYPE html>
 <html>
+<head>
+  <title>Login</title>
+</head>
 <body>
-<h2>Secure Login</h2>
+  <h2>Login</h2>
 
-<input id="user" placeholder="Username"><br>
-<input id="pass" placeholder="Password" type="password"><br>
-<button onclick="login()">Login</button>
+  <div>
+    <label>Username</label>
+    <input type="text" id="username" />
+  </div>
 
-<input id="otp" placeholder="Enter OTP"><br>
-<button onclick="verify()">Verify OTP</button>
+  <div>
+    <label>Password</label>
+    <input type="password" id="password" />
+  </div>
 
-<script>
-function login() {
-  fetch("/login", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      username: user.value,
-      password: pass.value
-    })
-  });
-}
+  <button id="btnLogin">Generate OTP</button>
 
-function verify() {
-  fetch("/verify-otp", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ otp: otp.value })
-  }).then(() => location.href = "home.html");
-}
-</script>
+  <div>
+    <label>Enter OTP</label>
+    <input type="text" id="otp" />
+  </div>
+
+  <button id="btnVerify">Verify & Login</button>
+
+  <p id="message"></p>
+
+  <script src="script.js"></script>
 </body>
 </html>
