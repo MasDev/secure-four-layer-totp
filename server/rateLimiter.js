@@ -1,11 +1,22 @@
-const attempts = {};
+const attempts = new Map();
 
-module.exports = (req, res, next) => {
+module.exports = function rateLimiter(req, res, next) {
   const ip = req.ip;
-  attempts[ip] = (attempts[ip] || 0) + 1;
+  const now = Date.now();
 
-  if (attempts[ip] > 5) {
-    return res.status(429).json({ message: "Too many attempts. Try later." });
+  if (!attempts.has(ip)) attempts.set(ip, []);
+  const logs = attempts.get(ip).filter(t => now - t < 5 * 60 * 1000);
+
+  logs.push(now);
+  attempts.set(ip, logs);
+
+  if (logs.length > 3) {
+    return res.json({
+      layer: 1,
+      fail: true,
+      message: "Layer 1 Failed: Rate limit exceeded (3 attempts / 5 mins)"
+    });
   }
+
   next();
 };

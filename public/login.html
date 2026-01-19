@@ -1,31 +1,67 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Login</title>
+  <title>Secure Login</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #0b1220, #1b2a47);
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 60px;
+    }
+    .card {
+      background: rgba(255,255,255,0.1);
+      width: 400px;
+      margin: auto;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.6);
+    }
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 8px;
+      border: none;
+    }
+    button {
+      width: 92%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      background: #22c55e;
+      color: white;
+    }
+    #status {
+      margin-top: 15px;
+      font-size: 14px;
+      color: yellow;
+    }
+  </style>
 </head>
 <body>
-  <h2>Login</h2>
+  <div class="card">
+    <h2>Secure Login (4 Layer)</h2>
+    <input type="text" id="username" placeholder="Username" />
+    <input type="password" id="password" placeholder="Password" />
 
-  <div>
-    <label>Username</label>
-    <input type="text" id="username" />
+    <button id="btnLogin">Generate OTP</button>
+
+    <input type="text" id="otp" placeholder="Enter OTP" />
+
+    <button id="btnVerify">Verify & Login</button>
+
+    <div id="status">
+      <p id="layer1"></p>
+      <p id="layer2"></p>
+      <p id="layer3"></p>
+      <p id="layer4"></p>
+    </div>
   </div>
-
-  <div>
-    <label>Password</label>
-    <input type="password" id="password" />
-  </div>
-
-  <button id="btnLogin">Generate OTP</button>
-
-  <div>
-    <label>Enter OTP</label>
-    <input type="text" id="otp" />
-  </div>
-
-  <button id="btnVerify">Verify & Login</button>
-
-  <p id="message"></p>
 
   <script src="script.js"></script>
 </body>
